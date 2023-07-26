@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.example.auth.enums.UserRole;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,9 +30,16 @@ public class User implements UserDetails {
 	
 	private String password;
 	
+	@Enumerated(EnumType.STRING)
 	private UserRole role;
 	
 	public User() {}
+	
+	public User(String login, String password, UserRole role) {
+		this.login = login;
+		this.password = password;
+		this.role = role;
+	}
 
 	public User(Long id, String login, String password, UserRole role) {
 		this.id = id;
