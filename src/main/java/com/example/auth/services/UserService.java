@@ -1,6 +1,7 @@
 package com.example.auth.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +25,10 @@ public class UserService {
 		User newUser = new User(user.getLogin(), encryptedPassword, user.getRole());
 		
 		return this.userRepository.save(newUser);
+	}
+	
+	public UserDetails findByLogin(String login) {
+		
+		return this.userRepository.findByLogin(login);
 	}
 }
